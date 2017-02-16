@@ -2,7 +2,7 @@
 import time
 
 # Constantes
-GPIO_output = 12
+GPIO_output_number = 12
 LED_status=False
 LED_off = False
 
@@ -10,15 +10,15 @@ LED_off = False
 LED_frequence = 5
 # temps de pause entre chaque changement d'état de la LED
 # utiliser 1.0 (et pas 1) pour que la variable LED_period soit un float
-LED_period = 1.0 / LED_frequence / 2 
+LED_half_period = 1.0 / LED_frequence / 2 
 
 # Init GPIO
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 # mettre la sortie GPIO_output en mode sortie
-GPIO.setup(GPIO_output,GPIO.OUT)
+GPIO.setup(GPIO_output_number,GPIO.OUT)
 # initialiser la LED a OFF
-GPIO.output(GPIO_output,LED_off)
+GPIO.output(GPIO_output_number,LED_off)
 
 try:
     print("runing, CTRL-C to stop")
@@ -27,11 +27,11 @@ try:
         # changer le status de la variable LED_status si 1 -> 0 si 0 -> 1
         LED_status = not LED_status
         # apliquer l'etat à la sortie
-        GPIO.output(GPIO_output,LED_status)
+        GPIO.output(GPIO_output_number,LED_status)
         # faire une pause pour que la fréquence de clignotment soir celle choisie
-        time.sleep(LED_period)
+        time.sleep(LED_half_period)
         
 except KeyboardInterrupt:
     print("bye")
-    GPIO.output(GPIO_output,LED_off)
+    GPIO.output(GPIO_output_number,LED_off)
     pass

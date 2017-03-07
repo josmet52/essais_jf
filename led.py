@@ -1,7 +1,7 @@
 """
 This small program causes a led to flash at a given frequency
     GPIO channel = 12
-    Frequency = 5 Hz
+    Frequency = 5 Hz (to change this, modify de value of LED_blink_frequency)
 """
 
 import RPi.GPIO as GPIO 
